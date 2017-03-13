@@ -1,0 +1,32 @@
+# make relationship file for the prog program
+Demo
+
+Main: DemoMain.o DemoLib 
+	mklink
+	g++ -o DemoMain DemoMain.o -ldl -lm
+
+
+
+DemoMain.o: DemoMain.cpp
+	
+	g++ -c DemoMain.cpp
+
+
+
+DemoLib: DemoLib.cpp
+	
+	g++ -fPIC -g -c -Wall DemoLib.cpp
+	
+	g++ -shared -Wl, -soname, libmylib.so.1.0.1 -o DemoLib.so.1.0.1 DemoLib.o -lc
+
+ 
+
+mklink:
+	ln -s DemoLib.so.1.0.1 DemoLib.so
+
+
+
+clean:
+	rm *.o
+	rm DemoLib.so*
+	rm DemoMain

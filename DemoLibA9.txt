@@ -1,0 +1,22 @@
+
+extern "C" 
+
+double demo(int scale)
+
+{
+ 
+	 return scale * 1.23456;
+
+}
+
+
+
+extern "C" 
+
+double demo2(int val1, double val2)
+
+{
+ 
+	 return val1 * val2;
+
+}

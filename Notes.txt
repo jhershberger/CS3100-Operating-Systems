@@ -1,0 +1,53 @@
+CS3100 Notes 
+
+Dynamically allocating memory
+ -split up memory
+	A = [a1 |a2 |a3 |a4 |a5 |a6 . . .  ]
+	
+	say we have a program
+		-we have 2 objects
+		-the stack
+		- the heap
+		
+		we want to dynamically allocate each object
+		-we use a segmentation table that has information about 
+			base memory address where the objects will be allocated
+			and the "name" of the objects
+			and the limit of the address space( "you can allocate x amount of memory so the object better fit ")
+		0[ base memory address | limit of address space(like a buffer) ]
+		1[ base | limit]
+		2[ base | limit]
+		3[ base | limit]
+		4[ base | limit]
+		5[ base | limit]
+		
+Segmentation
+ -split memory up into blocks called pages and frames
+	pages are virtual memory
+	frames are physical memory
+	
+	block size: 4096 bytes(1024 * 4)
+	
+	have to keep track of what's used/not used
+	
+Translating between pages and frames	
+	-logical address for pages
+		[ page name | offset(0 - frame size) ]
+	- use a table
+		ex: 0[ base = 4096 | limit = 4096]
+	
+	
+11/23
+Demand paging
+	-issues: page fault
+		solutions:
+			1. registers(store everything)
+			2. check position (edge strattling in memory)
+	
+	algorithm: p = probability of page fault, 0<p<1
+		(1-p)*ma + p * pft
+			p =.001, ma = 100ns, pft = 25 ms
+			(1-.001)*100ns + .001 * 25000000ns = 99.9ns + 25000ns = 25099.9 ns (time it takes to access all pages per process)
+			 in order to achieve 10% less time we need p = .0000004 which isn't possible in a demand page only system.
+			
+			
